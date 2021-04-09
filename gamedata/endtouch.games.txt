@@ -1,0 +1,51 @@
+"Games"
+{
+	"#default"
+	{
+ 		"Addresses"
+		{
+			"PhysicsMarkEntityAsTouchedAddress"
+			{
+				"windows"
+				{
+					"signature" "PhysicsMarkEntityAsTouched"
+				}
+				
+				"linux"
+				{
+					"signature" "PhysicsMarkEntityAsTouched"
+				}
+			}
+		}
+
+		"Signatures"
+		{
+			"PhysicsCheckForEntityUntouch"
+			{
+				"windows"	"\x55\x8B\xEC\x51\x56\x8B\xF1\x8B\x86\x38\x03\x00\x00"
+				"linux"		"@_ZN11CBaseEntity28PhysicsCheckForEntityUntouchEv"
+			}
+
+			"PhysicsMarkEntityAsTouched"
+			{
+				"windows"	"\x55\x8B\xEC\x53\x8B\x5D\x08\x56\x8B\xF1\x3B\xF3"
+				"linux"		"@_ZN11CBaseEntity26PhysicsMarkEntityAsTouchedEPS_"
+			}
+
+			"DisableTouchFuncs"
+			{
+				"windows"	"\x80\x3D\x00\x00\x00\x00\x00\x75\x14\x53\x8B\xCE\xE8\x00\x00\x00\x00\x8B\xC7"
+				"linux"		"@_ZN11CBaseEntity21sm_bDisableTouchFuncsE"
+			}
+		}
+
+		"Offsets"
+		{
+			"OS"
+			{
+				"windows"	"1"
+				"linux"		"2"
+			}
+		}
+	}
+}
