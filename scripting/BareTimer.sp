@@ -14,7 +14,7 @@ public Plugin myinfo =
 {
 	name = "Barebones Timer",
 	author = "rumour",
-	description = "This is just a very simple example to use with the EndTouchFix and does not account for tick fraction",
+	description = "This is just a very simple example and does not account for tick fraction",
 	version = "",
 	url = ""
 };

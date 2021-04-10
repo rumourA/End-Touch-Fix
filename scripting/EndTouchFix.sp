@@ -7,11 +7,8 @@
 #pragma newdecls required
 
 #define EFL_CHECK_UNTOUCH (1<<24)
-#define WINDOWS 1
 
 Handle PhysicsCheckForEntityUntouch;
-Address PhysicsMarkEntityAsTouched;
-int OS;
 bool LateLoad;
 
 public Plugin myinfo =
@@ -31,10 +28,6 @@ public void OnPluginStart()
 	{
 		SetFailState("Failed to load game_data");
 	}
-	
-	OS = game_data.GetOffset("OS");
-	
-	PhysicsMarkEntityAsTouched = game_data.GetAddress("PhysicsMarkEntityAsTouchedAddress");
 	
 	StartPrepSDKCall(SDKCall_Entity);
 	if(!PrepSDKCall_SetFromConf(game_data, SDKConf_Signature, "PhysicsCheckForEntityUntouch"))
@@ -76,24 +69,10 @@ bool GetCheckUntouch(int client)
 
 public Action PostThink(int client)
 {
-	int disable_touch_funcs;
-	
-	if(OS == WINDOWS)
+	if(GetCheckUntouch(client))
 	{
-		disable_touch_funcs = LoadFromAddress(PhysicsMarkEntityAsTouched + view_as<Address>(0x3430B2), NumberType_Int8);
-	}
-	else
-	{
-		disable_touch_funcs = LoadFromAddress(PhysicsMarkEntityAsTouched + view_as<Address>(0x7E4064), NumberType_Int8);
-	}
-	
-	if(!disable_touch_funcs)
-	{
-		if(GetCheckUntouch(client))
-		{
-			SDKCall(PhysicsCheckForEntityUntouch, client);
-		}
-	}
+		SDKCall(PhysicsCheckForEntityUntouch, client);
+	}	
 	
 	return Plugin_Continue;
 }
