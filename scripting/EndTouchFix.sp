@@ -54,6 +54,7 @@ public void OnPluginStart()
 public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max)
 {
 	LateLoad = late;
+	RegPluginLibrary("endtouchfix");
 }
 
 public void OnClientPutInServer(int client)
